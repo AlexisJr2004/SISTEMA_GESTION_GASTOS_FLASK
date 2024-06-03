@@ -1,0 +1,179 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; /* Fondo claro */
+    background-image: url('https://img.freepik.com/vector-premium/fondo-onda-abstracta-color-azul-blanco_500223-179.jpg?w=1060'); /* Ruta de tu imagen de fondo */
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+}
+
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    margin: 50px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #00a0ff;
+    color: #fff;
+}
+
+td {
+    background-color: #f5f5f5;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="date"],
+select,
+input[type="text"] {
+    width: 100%; /* Ajusta el ancho de los campos de entrada */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 15px;
+    box-sizing: border-box;
+    margin-bottom: 1px; /* Añade un espacio entre los campos */
+}
+
+select {
+    height: 40px;
+}
+
+button {
+    background-color: #00a0ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    margin-top: 10px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+button:first-child {
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #3498db;
+    transform: scale(1.05);
+}
+
+/* Estilos para el footer */
+footer {
+    color: black;
+    text-align: center; /* Centra el texto en el footer */
+    padding: 1px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+
+.footer-content {
+    background-color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%;
+}
+
+.left-content {
+    text-align: left;
+}
+
+.footer-content p {
+    text-align: center;
+}
+
+/* Estilos para el contenedor de la hora */
+.hora-contenedor {
+    text-align: right;
+    height: 37px;
+    padding: 5px;
+    position: fixed;
+    width: auto;
+    bottom: 3px;
+    z-index: 99999;
+    right: 10px;
+    color: #000;
+}
+
+.time-text {
+    font-weight: bold;
+}
+
+.ampm-text {
+    font-weight: bold;
+}
+
+/* Estilo para el contenedor personalizado del checkbox */
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+}
+
+/* Estilo para el checkbox */
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0; /* Oculta el cuadro del checkbox */
+    cursor: pointer;
+}
+
+/* Estilo para el icono de tacho de basura */
+.custom-checkbox i {
+    font-size: 24px; /* Tamaño del icono */
+    color: #333; /* Color predeterminado */
+    position: center;
+    top: 0;
+    left: 0;
+}
+
+/* Estilo para el icono de tacho de basura cuando se marca el checkbox */
+.custom-checkbox input[type="checkbox"]:checked + i {
+    color: red; /* Cambia el color a rojo al marcar el checkbox */
+}

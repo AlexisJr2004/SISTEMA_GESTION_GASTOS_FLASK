@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://img2.freepng.es/20180312/fpw/kisspng-paper-pencil-icon-clip-book-5aa6a351746a88.1984627215208702254769.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_pages.css') }}">
+    <title>Agregar_Gastos</title>
+</head>
+<body>
+<div class="container">
+    <h2>Llene el formulario para guardar un nuevo gasto</h2>
+    <form method="POST" action="/add_gasto">
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <label for="amount"></label><input type="number" step="0.01" min="0" placeholder="Ingrese Gasto"
+                                               id="amount" name="cantidad" required>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Fecha:</label>
+            <input type="date" id="date" name="fecha" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Categoría:</label>
+            <select id="category" name="categoria" required>
+                <option value="" disabled selected>Escoja una categoría</option>
+                <option value="nueva_categoria" class="nueva-categoria-option">Agregar Nueva Categoría</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria }}">{{ categoria }}</option>
+                {% endfor %}
+                <!-- Agregar más opciones de categoría -->
+            </select>
+
+        </div>
+
+        <div class="form-group" id="new-category-group" style="display:none;">
+            <label for="new-category">Nueva Categoría:</label>
+            <input type="text" placeholder="Agregue nueva categoria" id="new-category" name="nueva_categoria" required
+                   class="styled-input">
+        </div>
+
+        <button type="submit">Agregar Gasto</button>
+
+        <button type="button" onclick="location.href='http://127.0.0.1:5000/';"><i class="fas fa-home"></i></button>
+
+
+    </form>
+</div>
+
+
+<div class="hora-contenedor">
+    <p id="tiempo-actual">
+        <span id="time" class="time-text"></span>
+        <span id="ampm" class="ampm-text"></span>
+    </p>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="left-content">
+            <p><strong>Universidad Estatal de Milagro</strong> Todos los derechos reservados - UNEMI</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Mensaje Swal Alert con animación de círculo girando
+    Swal.fire({
+        title: 'Cargando...',
+        html: 'Por favor, espere.<div class="lds-dual-ring"></div>',
+        icon: 'info',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
+    // Simula un tiempo de carga de 1 segundos
+    setTimeout(() => {
+        Swal.close();
+    }, 1000);
+</script>
+<script>
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const currentTime = new Date();
+        const hora = currentTime.getHours().toString().padStart(2, '0');
+        const minuto = currentTime.getMinutes().toString().padStart(2, '0');
+        const segundo = currentTime.getSeconds().toString().padStart(2, '0');
+
+        timeElement.innerHTML = `<strong>${hora}</strong>:<strong>${minuto}</strong>:<strong>${segundo}</strong>`;
+    }
+
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 500);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const ampmElement = document.getElementById('ampm'); // Elemento para la referencia AM/PM
+        const currentTime = new Date();
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        let seconds = currentTime.getSeconds();
+        let ampm = 'AM'; // Por defecto, asumimos que es AM
+        // Verifica si es PM y ajusta la referencia
+        if (hours >= 12) {
+            ampm = 'PM';
+            if (hours > 12) {
+                hours -= 12;
+            }
+        }
+        // Asegura que las horas, minutos y segundos tengan dos dígitos
+        hours = hours.toString().padStart(2, '0');
+        minutes = minutes.toString().padStart(2, '0');
+        seconds = seconds.toString().padStart(2, '0');
+        // Actualiza el contenido de los elementos
+        timeElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        ampmElement.innerHTML = ampm;
+    }
+
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 1000);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Su gasto se registro con éxitos',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1000, // 1 segundo de tiempo de espera
+                onOpen: () => {
+                    Swal.showLoading();
+                },
+                onClose: () => {
+                    // Cuando se cierre la alerta, se enviará el formulario
+                    form.submit();
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('category');
+        const newCategoryGroup = document.getElementById('new-category-group');
+        const newCategoryInput = document.getElementById('new-category');
+
+        categorySelect.addEventListener('change', function () {
+            if (categorySelect.value === 'nueva_categoria') {
+                newCategoryGroup.style.display = 'block';
+                newCategoryInput.setAttribute('required', 'required');
+            } else {
+                newCategoryGroup.style.display = 'none';
+                newCategoryInput.removeAttribute('required');
+            }
+        });
+    });
+</script>
+</body>
+</html>

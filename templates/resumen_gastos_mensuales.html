@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://img2.freepng.es/20180312/fpw/kisspng-paper-pencil-icon-clip-book-5aa6a351746a88.1984627215208702254769.jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_pages.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Resumen de Gastos</title>
+</head>
+<body>
+<div class="container">
+    <h1>Resumen de Gastos Mensuales</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Mes</th>
+            <th>Categoría</th>
+            <th>Gastos</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for month, categories in resumen.items() %}
+            {% for category, expenses_with_date in categories.items() %}
+                <tr>
+                    {% if loop.first %}
+                        <td rowspan="{{ categories|length }}">{{ month }}</td>
+                    {% endif %}
+                    <td>{{ category }}</td>
+                    <td>
+                        {% for expense, date in expenses_with_date %}
+                            {{ expense }} ({{ date.strftime('%Y-%m-%d') }})
+                            {% if not loop.last %}<br>{% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <!-- Agregamos una fila extra para el gasto total -->
+            <tr>
+                <td colspan="2" style="text-align: right;">Gasto Total:</td>
+                <td>${{ totales[month] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button onclick="window.print()"><i class="fas fa-print"></i></button>
+    <button type="button" onclick="location.href='http://127.0.0.1:5000/';"><i class="fas fa-home"></i></button>
+
+
+</div>
+
+
+<div class="hora-contenedor">
+    <p id="tiempo-actual">
+        <span id="time" class="time-text"></span>
+        <span id="ampm" class="ampm-text"></span>
+    </p>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="left-content">
+            <p><strong>Universidad Estatal de Milagro</strong> Todos los derechos reservados - UNEMI</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    // Crear una alerta personalizada con una animación de círculo girando
+    Swal.fire({
+        title: 'Cargando...',
+        html: 'Por favor, espere.<div class="lds-dual-ring"></div>',
+        icon: 'info',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+    // Simula un tiempo de carga de 2 segundos
+    setTimeout(() => {
+        Swal.close();
+    }, 1500);
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Mensaje Swal Alert con animación de círculo girando
+    Swal.fire({
+        title: 'Cargando...',
+        html: 'Por favor, espere.<div class="lds-dual-ring"></div>',
+        icon: 'info',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
+    // Simula un tiempo de carga de 1 segundos
+    setTimeout(() => {
+        Swal.close();
+    }, 1000);
+</script>
+<script>
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const currentTime = new Date();
+        const hora = currentTime.getHours().toString().padStart(2, '0');
+        const minuto = currentTime.getMinutes().toString().padStart(2, '0');
+        const segundo = currentTime.getSeconds().toString().padStart(2, '0');
+
+        timeElement.innerHTML = `<strong>${hora}</strong>:<strong>${minuto}</strong>:<strong>${segundo}</strong>`;
+    }
+
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 500);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const ampmElement = document.getElementById('ampm'); // Elemento para la referencia AM/PM
+        const currentTime = new Date();
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        let seconds = currentTime.getSeconds();
+        let ampm = 'AM'; // Por defecto, asumimos que es AM
+        // Verifica si es PM y ajusta la referencia
+        if (hours >= 12) {
+            ampm = 'PM';
+            if (hours > 12) {
+                hours -= 12;
+            }
+        }
+        // Asegura que las horas, minutos y segundos tengan dos dígitos
+        hours = hours.toString().padStart(2, '0');
+        minutes = minutes.toString().padStart(2, '0');
+        seconds = seconds.toString().padStart(2, '0');
+        // Actualiza el contenido de los elementos
+        timeElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        ampmElement.innerHTML = ampm;
+    }
+
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 1000);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+</script>
+</body>
+</html>

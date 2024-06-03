@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://img2.freepng.es/20180312/fpw/kisspng-paper-pencil-icon-clip-book-5aa6a351746a88.1984627215208702254769.jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+    <title>Inicio-SGG</title>
+</head>
+<body>
+<div class="nav-bar">
+
+    <div class="menu-icon">
+        <i class="fas fa-bell"></i><sup><span class="notifi">2</span></sup>
+        <i class="fas fa-envelope"></i><sup><span class="notifi">1</span></sup>
+    </div>
+
+    <div class="user-info">
+        <div class="user-icon">
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS3TikdYturzmi5tIDQ0rTmtThdz9JQzlvcdkW0xvU1rUQ2pKpQ" alt="Usuario">
+        </div>
+        <p class="user-name">Alexis2004</p>
+    </div>
+
+
+
+    <button id="nosotros-btn">Información</button>
+
+
+</div>
+
+<h1>SISTEMA DE GESTION DE GASTOS</h1>
+
+<h4><span style="font-weight: bold;">¡BIENVENIDO</span>, al Sistema de Gestión de Gastos Personales!</h4>
+
+<div class="module-header">
+    <i class="fas fa-layer-group"></i>
+    <h4>Mis módulos</h4>
+</div>
+
+<div class="module-container">
+    <a href="agregar_gastos.html" class="modulo">
+        <i class="fas fa-shopping-cart fa-3x"></i>
+        <h2>Agregar Gastos</h2>
+        <p>Agrega nuevos gastos ingresando la cantidad, la fecha y la categoría.</p>
+    </a>
+
+    <a href="categorizacion_gastos.html" class="modulo">
+        <i class="fas fa-tags fa-3x"></i>
+        <h2>Categorización de Gastos</h2>
+        <p>Organiza tus gastos en diferentes categorías, (alimentación, transporte, entretenimiento), etc.</p>
+    </a>
+
+    <a href="resumen_gastos_mensuales.html" class="modulo">
+        <i class="fas fas fa-list-alt fa-3x"></i>
+        <h2>Resumen de Gastos</h2>
+        <p>Mostrar un resumen del total de tus gastos mensuales, organizados en tus categorias.</p>
+    </a>
+
+    <a href="eliminar_gastos.html" class="modulo">
+        <i class="fas fa-trash fa-3x"></i>
+        <h2>Eliminar Gastos de Categorias</h2>
+        <p>Elimina gastos especificos o todos.</p>
+    </a>
+</div>
+
+<div class="hora-contenedor">
+    <p id="tiempo-actual">
+        <span id="time" class="time-text"></span>
+        <span id="ampm" class="ampm-text"></span>
+    </p>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="left-content">
+            <p><strong>Universidad Estatal de Milagro</strong> Todos los derechos reservados - UNEMI</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    // Mensaje Swal Alert con animación de círculo girando
+    Swal.fire({
+        title: 'Cargando...',
+        html: 'Por favor, espere.<div class="lds-dual-ring"></div>',
+        icon: 'info',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+    // Simula un tiempo de carga de 1 segundos
+    setTimeout(() => {
+        Swal.close();
+    }, 1000);
+</script>
+<script>
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const currentTime = new Date();
+        const hora = currentTime.getHours().toString().padStart(2, '0');
+        const minuto = currentTime.getMinutes().toString().padStart(2, '0');
+        const segundo = currentTime.getSeconds().toString().padStart(2, '0');
+
+        timeElement.innerHTML = `<strong>${hora}</strong>:<strong>${minuto}</strong>:<strong>${segundo}</strong>`;
+    }
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 500);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+    function updateTime() {
+        const timeElement = document.getElementById('time');
+        const ampmElement = document.getElementById('ampm'); // Elemento para la referencia AM/PM
+        const currentTime = new Date();
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        let seconds = currentTime.getSeconds();
+        let ampm = 'AM'; // Por defecto, asumimos que es AM
+        // Verifica si es PM y ajusta la referencia
+        if (hours >= 12) {
+            ampm = 'PM';
+            if (hours > 12) {
+                hours -= 12;
+            }
+        }
+        // Asegura que las horas, minutos y segundos tengan dos dígitos
+        hours = hours.toString().padStart(2, '0');
+        minutes = minutes.toString().padStart(2, '0');
+        seconds = seconds.toString().padStart(2, '0');
+        // Actualiza el contenido de los elementos
+        timeElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        ampmElement.innerHTML = ampm;
+    }
+    // Actualiza la hora cada segundo
+    setInterval(updateTime, 1000);
+    // Llama a updateTime para mostrar la hora inicial
+    updateTime();
+</script>
+<script>
+    // Función para mostrar la alerta SweetAlert del botón "Nosotros"
+    function mostrarIntegrantes() {
+        Swal.fire({
+            title: 'Información del Sistema (SGG)',
+            html: 'El Sistema de Gestión de Gastos Personales (SGG) es un Software en Línea diseñada específicamente para ayudad a los usuarios a poder administrar y controlar sus finanzas personales de manera ordenada y efectiva.',
+            icon: 'info'
+        });
+    }
+    document.getElementById('nosotros-btn').addEventListener('click', mostrarIntegrantes);
+</script>
+<script>
+    // Cuando se hace clic en el ícono de notificaciones
+    document.querySelector('.menu-icon .fas.fa-bell ').addEventListener('click', function() {
+        // Verifica si hay notificaciones
+        const hayNotificaciones = false; // Cambia a true si tienes notificaciones
+
+        // Muestra la notificación
+        Swal.fire({
+            title: 'Centro de Notificaciones',
+            text: hayNotificaciones ? 'Tienes nuevas notificaciones' : 'Tienes 2 notificaciones pendientes por revisar',
+            icon: hayNotificaciones ? 'success' : 'info',
+        });
+    });
+
+
+        // Cuando se hace clic en el ícono de correos
+    document.querySelector('.menu-icon .fas.fa-envelope ').addEventListener('click', function() {
+        // Verifica si hay notificaciones
+        const hayNotificaciones = false; // Cambia a true si tienes notificaciones
+
+        // Muestra la notificación
+        Swal.fire({
+            title: 'Centro de Notificaciones',
+            text: hayNotificaciones ? 'Tienes nuevas notificaciones' : 'Tiene 1 correo pendientes por revisar ',
+            icon: hayNotificaciones ? 'success' : 'info',
+        });
+    });
+</script>
+</body>
+</html>

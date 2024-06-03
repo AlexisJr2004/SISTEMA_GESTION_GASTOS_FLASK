@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('https://img.freepik.com/vector-premium/fondo-onda-abstracta-color-azul-blanco_500223-179.jpg?w=1060'); /* Ruta de tu imagen de fondo */
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center top; /* Centra la imagen verticalmente en la parte superior del fondo */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    color: #333; /* Color de texto oscuro */
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilo para la barra de navegación */
+.nav-bar {
+    border-radius: 50px; /* Sin bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 111, 225, 100);
+}
+
+/* Estilo para el icono de notificaciones */
+.menu-icon {
+    margin-top: 17px; /* Alineación vertical al centro */
+    margin-left: 10px;
+    color: #333; /* Color de icono oscuro */
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.notifi {
+    font-size: 17px;
+    color: #00a0ff;
+    font-weight: bold;
+}
+
+/* Estilo para el contenedor de información del usuario */
+.user-info {
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para el ícono de usuario */
+.user-icon {
+    margin-left: 10px; /* Espaciado izquierdo reducido */
+}
+
+/* Estilo para el ícono de usuario (imagen) */
+.user-icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Estilo para el nombre del usuario */
+.user-name {
+    font-weight: bold;
+    color: #333;
+}
+
+h1 {
+    color: #000000;
+    padding: 40px 10px;
+    font-size: 60px;
+    margin-top: 40px;
+    background: linear-gradient(to right, #00a0ff, #006fff, #00a0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+/* Estilos para los módulos */
+.module-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+    margin: 10px;
+
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* Fondo blanco para el encabezado */
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.module-header i {
+    color: #00a0ff;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.modulo {
+    background-color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    color: #333;
+    transition: background 0.3s; /* Agrega una transición de 0.3 segundos para el cambio de fondo */
+}
+
+
+.modulo h2 {
+    margin: 0;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.modulo p {
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #fff; /* Fondo blanco para el footer */
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+
+.footer-content {
+    font-size: 13px;
+}
+
+.footer-content p {
+    text-align: center;
+}
+
+/* Estilo para el botón "Nosotros" */
+#nosotros-btn {
+    background: #006fff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.3s; /* Agregar transiciones a transform y background-color */
+}
+
+#nosotros-btn:hover {
+    background-color: #00a0ff;
+    transform: scale(1.05);
+}
+
+/* Agrega transición suave en los modulos */
+a.modulo {
+    transition: transform 0.2s;
+}
+a.modulo:hover {
+    transform: scale(1.05);
+}
+/* Estilos para el contenedor de la hora */
+.hora-contenedor {
+    text-align: right;
+    height: 37px;
+    padding: 5px;
+    position: fixed;
+    width: auto;
+    bottom: 3px;
+    z-index: 99999;
+    right: 10px;
+    color: #000;
+}
+.time-text {
+    font-weight: bold;
+}
+.ampm-text {
+    font-weight: bold;
+}
+/* Estilos para el footer */
+footer {
+    background: #ffffff;
+    color: black;
+    text-align: center; /* Centra el texto en el footer */
+    padding: 1px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+.footer-content {
+    background-color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%;
+}
+.left-content {
+    text-align: left;
+}
+.footer-content p {
+    text-align: center;
+}
+
+/* Estilos para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+    .nav-bar {
+        border-radius: 0; /* Sin bordes redondeados */
+        background-color: #fff; /* Fondo blanco */
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+        background-color: #fff; /* Fondo blanco para el footer */
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        z-index: 1;
+    }
+    .menu-icon {
+        margin-top: 17px; /* Ajusta margen */
+    }
+
+    .module-container {
+        margin: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+        justify-items: center;
+        padding: 20px;
+    }
+
+    .modulo {
+        margin: 10px;
+        width: 80%; /* Ajusta el ancho de las tarjetas de módulos */
+    }
+
+    .footer-content {
+        font-size: 12px; /* Reduce el tamaño de fuente del footer */
+    }
+
+    #nosotros-btn {
+        font-size: 14px; /* Ajusta el tamaño de fuente del botón "Nosotros" */
+    }
+}
